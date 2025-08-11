@@ -5,6 +5,9 @@ import type { FilterFields, User } from '../lib/types'
 import { filterData } from '../lib/filterData'
 import { memo } from 'react'
 
+const LOADING_MESSAGE = 'Načítavám...'
+const NO_USERS_ERROR_MESSAGE = 'Nenašli jsme žádné uživatele'
+
 interface UserListProps {
   users: User[]
   isLoading: boolean
@@ -16,13 +19,13 @@ export const UserList = memo(({ users, isLoading, filters }: UserListProps) => {
 
   if (!isLoading && (!filteredUsers || filteredUsers.length === 0)) {
     return (
-      <UserListWrapper>Nenašli jsme žádné uživatele</UserListWrapper>
+      <UserListWrapper>{NO_USERS_ERROR_MESSAGE}</UserListWrapper>
     )
   }
 
   return (
     <UserListWrapper>
-      {isLoading && <LoadingSpinner>Načítavám...</LoadingSpinner>}
+      {isLoading && <LoadingSpinner>{LOADING_MESSAGE}</LoadingSpinner>}
       {filteredUsers.map(user => <UserListItem key={user.uuid} user={user} />)}
     </UserListWrapper>
   )
