@@ -1,3 +1,4 @@
+import { memo, useCallback, type Dispatch, type SetStateAction, type ChangeEvent } from 'react'
 import { FiltersWrapper } from './FiltersWrapper'
 import { FiltersField } from './FiltersField'
 import { FiltersInput } from './FiltersInput'
@@ -5,16 +6,16 @@ import type { ApiFilters } from '../lib/types'
 
 interface FiltersProps {
 	filters: ApiFilters,
-	setFilters: (filters: ApiFilters) => void
+	setFilters: Dispatch<SetStateAction<ApiFilters>>
 }
 
-export const Filters = ({ filters, setFilters }: FiltersProps) => {
+export const Filters = memo(({ filters, setFilters }: FiltersProps) => {
 	const { name, email } = filters
 
-	const handleChange = (key: keyof ApiFilters) => (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange = useCallback((key: keyof ApiFilters) => (event: ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value
-		setFilters({ ...filters, [key]: value || null })
-	}
+		setFilters(prev => ({ ...prev, [key]: value || null }))
+	}, [setFilters])
 
 	return (
 		<FiltersWrapper>
@@ -36,4 +37,4 @@ export const Filters = ({ filters, setFilters }: FiltersProps) => {
 			</FiltersField>
 		</FiltersWrapper>
 	)
-}
+})
