@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
-import type { ApiFilters, User } from '../common/types.ts'
 import { UserList } from './UserList'
-import { AppWrapper } from './AppWrapper.tsx'
-import { Button } from './Button.tsx'
+import { AppWrapper } from './AppWrapper'
+import { Button } from './Button'
 import { Filters } from './Filters'
-import { buildApiUrl } from './lib/buildApiUrl.ts'
+import { API_URL } from './lib/constants'
+import { filterData } from './lib/filterData'
+import { parseData } from './lib/parseData'
+import type { ApiFilters, User } from './lib/types'
 
 export default function App() {
   const [users, setUsers] = useState<User[]>([])
@@ -14,10 +16,13 @@ export default function App() {
   const loadData = async () => {
     setIsLoading(true)
 
-    const data = await fetch(buildApiUrl(filters))
-    const json = await data.json()
+    const response = await fetch(API_URL)
+    const responseJson = await response.json()
 
-    setUsers(json)
+    const data = parseData(responseJson)
+    const filteredData = filterData(data, filters)
+
+    setUsers(filteredData)
     setIsLoading(false)
   }
 

@@ -1,6 +1,4 @@
-import type { ApiData } from './types.ts'
-import type { User } from '../../common/types.ts'
-
+import type { ApiData, User } from './types'
 
 export const parseData = ({ data }: ApiData): User[] => {
   return data.map((user) => ({

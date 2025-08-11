@@ -1,7 +1,7 @@
-import type { User } from '../../common/types.ts'
 import { UserListItem } from '../UserListItem'
-import { UserListWrapper } from './UserListWrapper.tsx'
-import { LoadingSpinner } from './LoadingSpinner.tsx'
+import { UserListWrapper } from './UserListWrapper'
+import { LoadingSpinner } from './LoadingSpinner'
+import type { User } from '../lib/types'
 
 interface UserListProps {
   users: User[]

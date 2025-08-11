@@ -1,4 +1,4 @@
-import type { ApiFilters, User } from '../../common/types.ts'
+import type { ApiFilters, User } from './types'
 
 export const filterData = (data: User[], filters: ApiFilters) => {
 	const {

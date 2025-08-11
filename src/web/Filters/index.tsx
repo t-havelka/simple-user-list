@@ -1,7 +1,7 @@
-import { FiltersWrapper } from './FiltersWrapper.tsx'
-import { FiltersField } from './FiltersField.tsx'
-import { FiltersInput } from './FiltersInput.tsx'
-import type { ApiFilters } from '../../common/types.ts'
+import { FiltersWrapper } from './FiltersWrapper'
+import { FiltersField } from './FiltersField'
+import { FiltersInput } from './FiltersInput'
+import type { ApiFilters } from '../lib/types'
 
 interface FiltersProps {
 	filters: ApiFilters,

@@ -1,8 +1,8 @@
-import type { User } from '../../common/types.ts'
-import { UserListItemWrapper } from './UserListItemWrapper.tsx'
-import { UserListItemText } from './UserListItemText.tsx'
-import { UserListItemAvatar } from './UserListItemAvatar.tsx'
-import { UserListItemInfo } from './UserListItemInfo.tsx'
+import { UserListItemWrapper } from './UserListItemWrapper'
+import { UserListItemText } from './UserListItemText'
+import { UserListItemAvatar } from './UserListItemAvatar'
+import { UserListItemInfo } from './UserListItemInfo'
+import type { User } from '../lib/types'
 
 interface UserListItemProps {
   user: User
