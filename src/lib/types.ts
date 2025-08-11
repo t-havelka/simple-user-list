@@ -25,7 +25,7 @@ export interface User {
 	avatar: string
 }
 
-export interface ApiFilters {
+export interface FilterFields {
 	name?: string
 	email?: string
 }

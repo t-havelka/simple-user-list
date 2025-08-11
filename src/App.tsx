@@ -4,25 +4,22 @@ import { AppWrapper } from './AppWrapper'
 import { Button } from './Button'
 import { Filters } from './Filters'
 import { API_URL } from './lib/constants'
-import { filterData } from './lib/filterData'
 import { parseData } from './lib/parseData'
-import type { ApiFilters, User } from './lib/types'
+import type { FilterFields, User } from './lib/types'
 
 export default function App() {
   const [users, setUsers] = useState<User[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [filters, setFilters] = useState<ApiFilters>({})
+  const [filters, setFilters] = useState<FilterFields>({})
 
   const loadData = async () => {
     setIsLoading(true)
 
     const response = await fetch(API_URL)
     const responseJson = await response.json()
-
     const data = parseData(responseJson)
-    const filteredData = filterData(data, filters)
 
-    setUsers(filteredData)
+    setUsers(data)
     setIsLoading(false)
   }
 
@@ -35,7 +32,7 @@ export default function App() {
       <h1>Simple User List</h1>
       <Filters filters={filters} setFilters={setFilters} />
       <Button onClick={loadData}>Obnovit data</Button>
-      <UserList users={users} isLoading={isLoading} />
+      <UserList users={users} isLoading={isLoading} filters={filters} />
     </AppWrapper>
   )
 }

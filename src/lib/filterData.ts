@@ -1,6 +1,6 @@
-import type { ApiFilters, User } from './types'
+import type { FilterFields, User } from './types'
 
-export const filterData = (data: User[], filters: ApiFilters) => {
+export const filterData = (data: User[], filters: FilterFields) => {
 	const {
 		name: filterName,
 		email: filterEmail,
@@ -8,10 +8,10 @@ export const filterData = (data: User[], filters: ApiFilters) => {
 
 	return data.filter(({ firstName, lastName, email }) => {
 		const fullName = `${firstName} ${lastName}`
-		if (filterName && !fullName.includes(filterName)) {
+		if (filterName && !fullName.toLowerCase().includes(filterName.toLowerCase())) {
 			return false
 		}
 
-		return !(filterEmail && !email.includes(filterEmail))
+		return !(filterEmail && !email.toLowerCase().includes(filterEmail.toLowerCase()))
 	})
 }
