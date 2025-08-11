@@ -1,4 +1,4 @@
-import { memo, useCallback, type Dispatch, type SetStateAction, type ChangeEvent, type KeyboardEvent } from 'react'
+import { memo, useCallback, type Dispatch, type SetStateAction, type ChangeEvent } from 'react'
 import { FiltersWrapper } from './FiltersWrapper'
 import { FiltersField } from './FiltersField'
 import { FiltersInput } from './FiltersInput'
@@ -6,23 +6,16 @@ import type { ApiFilters } from '../lib/types'
 
 interface FiltersProps {
 	filters: ApiFilters,
-	setFilters: Dispatch<SetStateAction<ApiFilters>>,
-	onSubmit: () => void
+	setFilters: Dispatch<SetStateAction<ApiFilters>>
 }
 
-export const Filters = memo(({ filters, setFilters, onSubmit }: FiltersProps) => {
+export const Filters = memo(({ filters, setFilters }: FiltersProps) => {
 	const { name, email } = filters
 
 	const handleChange = useCallback((key: keyof ApiFilters) => (event: ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value
 		setFilters(prev => ({ ...prev, [key]: value || null }))
 	}, [setFilters])
-
-	const handleKeyDown = useCallback((event: KeyboardEvent<HTMLInputElement>) => {
-		if (event.key === 'Enter') {
-			onSubmit()
-		}
-	}, [onSubmit])
 
 	return (
 		<FiltersWrapper>
@@ -32,7 +25,6 @@ export const Filters = memo(({ filters, setFilters, onSubmit }: FiltersProps) =>
 					placeholder='Filter by name'
 					value={name ?? ''}
 					onChange={handleChange('name')}
-					onKeyDown={handleKeyDown}
 				/>
 			</FiltersField>
 			<FiltersField>
@@ -41,7 +33,6 @@ export const Filters = memo(({ filters, setFilters, onSubmit }: FiltersProps) =>
 					placeholder='Filter by email'
 					value={email ?? ''}
 					onChange={handleChange('email')}
-					onKeyDown={handleKeyDown}
 				/>
 			</FiltersField>
 		</FiltersWrapper>
