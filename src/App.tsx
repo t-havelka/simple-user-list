@@ -33,7 +33,7 @@ export default function App() {
   return (
     <AppWrapper>
       <h1>Simple User List</h1>
-      <Filters filters={filters} setFilters={setFilters} />
+      <Filters filters={filters} setFilters={setFilters} onSubmit={loadData} />
       <Button onClick={loadData}>Obnovit data</Button>
       <UserList users={users} isLoading={isLoading} />
     </AppWrapper>
