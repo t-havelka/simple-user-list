@@ -1,69 +1,11 @@
-# React + TypeScript + Vite
+~~# Ahoj
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Pripravil som aplikáciu podľa vášho zadania, pôvodne som chcel použiť react-create-app, ale už je nejak pol roka deprecated, tak som sa rozhodol vyskúšať Vite.
 
-Currently, two official plugins are available:
+Najprv som chcel filtrovanie dát riešiť niekde na BE, tak som si pripravil jednoduchý fastify server, kde som si dáta parsoval a filtroval. Samozrejme mi potom oneskorene došlo, že to api posiela random dáta, takže vo finálnej verzii riešim filtrovanie na FE a filtrujem len dáta, ktoré mi api už vrátilo, nechodím si po nové. Dávalo mi to takto najväčší zmysel vzhľadom na tú randomizáciu.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ak by vás ale zaujímala verzia s fastify, bolo mi ľúto to úplne zmazať, tak som na to vytvoril vlastnú branch [fastify-version](https://github.com/t-havelka/simple-user-list/tree/fastify-version). V tejto verzii ale chýbajú nejaké optimalizácie v Reacte, s ktorými som prišiel neskôr.
 
-## Expanding the ESLint configuration
+Ešte čo sa týka css, nechceli ste to po mne, ale vadilo mi sa na to pozerať bez nich, tak aby som nepálil veľa času, nechal som si ich vygenerovať AI. Píšem to len pre transparentnosť.~~
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Teším sa na vašu odpoveď a prípadné pripomienky ku kódu.
